@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="left">
+    <div class="topic-title">
+        <h1>{{topic.name}}</h1>
+        <div class="tile-container">
+            {% if mcq %}
+            <div class="tile">
+                <a href="/topic/mcq?topic_number={{ topic.number }}" class="herf">Mcq</a>
+            </div>
+            {% endif %}
+            
+        </div>
+    </div>
+    <div class="topic-container">
+        {{topic.content.html|safe}}
+    </div>
+</div>
+
+{% endblock %}

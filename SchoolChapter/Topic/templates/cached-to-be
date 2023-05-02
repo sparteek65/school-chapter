@@ -1,0 +1,16 @@
+<div class="right">
+
+    <div class="related-topics-heading">
+        <p class="rtn">
+
+            Related Topics
+        </p>
+    </div>
+    <div class="other-topics">
+        <!-- {% include "chatbox.html" %} -->
+        {% include "related_topics.html" %}
+    </div>
+
+</div>
+
+<!-- topic.html line 30-->

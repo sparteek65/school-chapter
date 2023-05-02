@@ -1,0 +1,18 @@
+version: "3"
+services:
+  school-chapter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # env_file:
+    #   - ./.env
+    restart: always
+    command: bash -c "python ./manage.py migrate && python manage.py collectstatic --noinput && gunicorn fm_recommendation.asgi:application -k uvicorn.workers.UvicornWorker -b 0.0.0.0:9099 -w 5 --error-logfile /app/dev.log --access-logfile /app/dev.log"
+    expose:
+      - "9099"
+    ports:
+      - "9099:9099"
+      - "22"
+    volumes:
+      - .:/app
+ 

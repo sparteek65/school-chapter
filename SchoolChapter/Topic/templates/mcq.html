@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+{% load template_functions %}
+{% block content %}
+<div class="left">
+    <div class="topic-title">
+        <h1>MCQ's</h1>
+        <div class="tile-container">
+            <div class="tile">
+                <a href="/topic?n={{ topic.number }}" class="herf">Topic</a>
+            </div>
+            <div class="tile">
+                case stuties
+            </div>
+            <div class="tile">
+                exam papers
+            </div>
+            <div class="tile">
+                cheetsheet
+            </div>
+        </div>
+    </div>
+    <div class="topic-container">
+        {% for m in mcq %}
+        {% with submitted=m|is_mcq_submitted:request.user %}
+        <div class="mcq" style="{{ submitted.1 }}">
+                <div class="question">
+                    {{ m.question }}
+                </div>
+                <div class="description">
+                    {{ m.description.html|safe }}
+                </div>
+                {% for option in m.options.all %}
+                    <div class="option" id="{{ option.id }}">
+                        {% with user_marked_correct=option|get_user_marked_correct:request.user %}
+                            {% if submitted.0 != None %}
+                                {% if user_marked_correct.marked_correct == True %}
+                                    <input type="checkbox" checked="true" class="cb" id="{{ option.id }}" disabled/> {{ option.text }}
+                                        {% if option.correct %}
+                                            ✅
+                                        {% else %}
+                                            ❌
+                                        {% endif %}
+                                {% else %}
+                                    <input type="checkbox" class="cb" id="{{ option.id }}" disabled/> {{ option.text }}
+                                        {% if option.correct %}
+                                            ✅
+                                        {% else %}
+                                            ❌
+                                        {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {% if submitted.0 %}
+                                    <input type="checkbox" checked="true" class="cb" id="{{ option.id }}"/> {{ option.text }} 
+                                {% else %}
+                                    <input type="checkbox" class="cb" id="{{ option.id }}"/> {{ option.text }}
+                                {% endif %}
+                            {% endif %}
+                        {% endwith %}
+
+                    </div>
+                    <div class="option">
+                    </div>
+                {% endfor %}
+
+                    {% if submitted.0 != None %}
+                        <div class="answer">
+                            Answer :  {{ m.answer }}
+                        </div>
+                    {% endif %}
+                </div>
+        {% endwith %}
+        {% endfor %}
+    </div>
+    <div class="mcq-submit">
+        <input type="button" class="mcq-submit-btn" onclick="submit_mcq()" value="submit"/>
+    </div>
+
+</div>
+<div class="right">
+
+    <div class="other-topics">
+
+    </div>
+
+</div>
+{% endblock %}

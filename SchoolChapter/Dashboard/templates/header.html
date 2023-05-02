@@ -1,0 +1,27 @@
+{% load static %}
+
+<div class="header">
+    <img src="{% static 'images/logo.svg' %}" alt="" class="src">
+    <input type="text" class="header-search-input" placeholder="Search Any Topic..." />
+    <div class="header-button-container">
+        <div class="profile-button">
+            {% if user.is_authenticated %}
+            <img src="{{ user.socialaccount_set.all.0.get_avatar_url }}" alt="" height="35" width="35" class="src" style="border-radius: 10px;" >
+
+                <p class="user-name">
+                        {{ request.user }}
+
+                    <!-- Display content for authenticated users -->
+                    <br>
+                    <a class="logout-text" href="/logout">logout</a>
+                    </p>
+            {% else %}
+                <!-- Display content for anonymous users -->
+                <p class="user-name">
+                        <a class="login-text" href="{% url 'social:begin' 'google-oauth2' %}">Login</a>
+                    <!-- Display content for authenticated users -->
+                    </p>
+            {% endif %}
+        </div>
+    </div>
+</div>

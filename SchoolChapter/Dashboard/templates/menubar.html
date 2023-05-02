@@ -1,0 +1,60 @@
+{% load template_functions %}
+<div class="menu-container">
+    <nav>
+        <ul class="nav">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Classes</a>
+                <ul>
+                    {% for class in classes_proc %}
+                        <li><a href="#">{{ class.class.name }}</a>
+                            <ul>
+                                {% for chapter in class.chapters %}
+                                    <li><a href="#">{{ chapter.chapter.name }}</a>
+                                        <ul>
+                                            {% for topic in chapter.topics %}
+                                                <li><a href="/topic/?n={{ topic.number }}">{{ topic.name }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href="#">Exam Papers</a>
+                <ul>
+                    {% for class in class_papers %}
+                        <li><a href="#">{{ class.class.name }}</a>
+                            <ul>
+                                {% for paper in class.papers %}
+                                    <li><a href="{{ paper.file.url }}">{{ paper.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href="#">Case Study</a>
+                <ul>
+                    {% for class in case_studies %}
+                        <li><a href="#">{{ class.class.name }}</a>
+                            <ul>
+                                {% for paper in class.case_study %}
+                                    <li><a href="{{ paper.file.url }}">{{ paper.name }}</a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</div>

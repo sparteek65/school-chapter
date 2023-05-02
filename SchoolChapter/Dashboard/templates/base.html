@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+
+   
+</head>
+
+<body>
+    <div classs="top-content">
+        {% include "header.html" %}
+        {% include "menubar.html" %}
+    </div>
+        <div class="main-body">
+            {% block content %}{% endblock %}
+        </div>
+    <div class="footer">
+        ©️ All Right Reserved (2023) - Ganit Mantra
+    </div>
+</body>
+
+</html>
