@@ -82,7 +82,12 @@ TEMPLATES = [
     },
 ]
 
-SOCIAL_AUTH_LOGIN_REDIRECT_URL=""
+LOGIN_URL = '/auth/login/google-oauth2/'
+LOGOUT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
+
+SITE_ID = 3
+
 WSGI_APPLICATION = 'SchoolChapter.wsgi.application'
 ASGI_APPLICATION = "SchoolChapter.asgi.application"
 
