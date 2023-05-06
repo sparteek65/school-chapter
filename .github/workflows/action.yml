@@ -2,7 +2,7 @@ name: SchoolChapter Docker Image CI
 
 on:
   pull_request:
-    branches: [main]
+    branches: [master]
     types: [closed]
 
 jobs:
