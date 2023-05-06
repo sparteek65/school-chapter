@@ -65,7 +65,7 @@ CORS_ALLOW_HEADERS = ["*"]
 
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = ['http://ganitmantra.com/']
+CSRF_TRUSTED_ORIGINS = ['http://ganitmantra.com']
 
 CORS_ALLOWED_ORIGINS = [
     "http://ganitmantra.com",
