@@ -60,6 +60,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'SchoolChapter.urls'
 
+CORS_ALLOW_ALL_ORIGINS = True  # was initially True
+CORS_ALLOW_HEADERS = ["*"]
+
+CORS_ALLOW_CREDENTIALS = True
+
+CSRF_TRUSTED_ORIGINS = ['http://ganitmantra.com/']
+
+CORS_ALLOWED_ORIGINS = ["http://ganitmantra.com/",
+                        "https://sparteek65.github.io", ]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -161,6 +171,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, '')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

@@ -1,0 +1,34 @@
+name: SchoolChapter Docker Image CI
+
+on:
+  pull_request:
+    branches: [main]
+    types: [closed]
+
+jobs:
+  docker:
+    runs-on: self-hosted
+    if: github.event.pull_request.merged == true
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Pulling from git
+        run: |
+          cd /root/temporary/school-chapter
+          sudo git pull origin main --ff
+
+      - name: Down containers
+        run: |
+          cd /root/temporary/school-chapter
+          sudo docker-compose -f "docker-compose.yml" down
+
+      - name: Build image
+        run: |
+          cd /root/temporary/school-chapter
+          sudo docker-compose -f "docker-compose.yml" build
+
+      - name: Run containers
+        run: |
+          cd /root/temporary/school-chapter
+          sudo docker-compose -f "docker-compose.yml" up -d
