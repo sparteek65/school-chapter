@@ -16,7 +16,7 @@ jobs:
       - name: Pulling from git
         run: |
           cd /root/temporary/school-chapter
-          sudo git pull origin main --ff
+          sudo git pull origin master --ff
 
       - name: Down containers
         run: |
