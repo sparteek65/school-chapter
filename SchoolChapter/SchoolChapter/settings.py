@@ -70,6 +70,12 @@ CSRF_TRUSTED_ORIGINS = ['http://ganitmantra.com/']
 CORS_ALLOWED_ORIGINS = ["http://ganitmantra.com/",
                         "https://sparteek65.github.io", ]
 
+CORS_ORIGIN_WHITELIST = [
+    'ganitmantra.com',
+    'www.ganitmantra.com',
+]
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
