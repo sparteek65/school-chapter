@@ -67,8 +67,10 @@ CORS_ALLOW_CREDENTIALS = True
 
 CSRF_TRUSTED_ORIGINS = ['http://ganitmantra.com/']
 
-CORS_ALLOWED_ORIGINS = ["http://ganitmantra.com/",
-                        "https://sparteek65.github.io", ]
+CORS_ALLOWED_ORIGINS = [
+    "http://ganitmantra.com",
+    "https://ganitmantra.com",
+]
 
 CORS_ORIGIN_WHITELIST = [
     'ganitmantra.com',
