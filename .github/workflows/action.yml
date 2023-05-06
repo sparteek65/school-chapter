@@ -20,15 +20,15 @@ jobs:
 
       - name: Down containers
         run: |
-          cd /root/temporary/school-chapter
+          cd /root/temporary/school-chapter/SchoolChapter
           sudo docker-compose -f "docker-compose.yml" down
 
       - name: Build image
         run: |
-          cd /root/temporary/school-chapter
+          cd /root/temporary/school-chapter/SchoolChapter
           sudo docker-compose -f "docker-compose.yml" build
 
       - name: Run containers
         run: |
-          cd /root/temporary/school-chapter
+          cd /root/temporary/school-chapter/SchoolChapter
           sudo docker-compose -f "docker-compose.yml" up -d
