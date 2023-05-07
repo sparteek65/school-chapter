@@ -65,7 +65,7 @@ CORS_ALLOW_HEADERS = ["*"]
 
 CORS_ALLOW_CREDENTIALS = True
 
-CSRF_TRUSTED_ORIGINS = ['http://ganitmantra.com']
+CSRF_TRUSTED_ORIGINS = ['http://ganitmantra.com'] # for csrf whitelisting of domain , otherwise admin will not open
 
 CORS_ALLOWED_ORIGINS = [
     "http://ganitmantra.com",
@@ -102,7 +102,8 @@ TEMPLATES = [
 
 LOGIN_URL = '/auth/login/google-oauth2/'
 LOGOUT_URL = '/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'https://ganitmantra.com/'
+
 
 SITE_ID = 3
 
@@ -134,9 +135,10 @@ DATABASES = {
 
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '458704564038-cd1ha9g0dvav2l9fjh1kmq8vtrnph05j.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '458704564038-nnoianq8i87ts2de3uiftmd3iusih21q.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_LOGIN_REDIRECT_URL='http://ganitmantra.com'
 
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',

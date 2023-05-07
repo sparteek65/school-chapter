@@ -13,7 +13,9 @@
 
                     <!-- Display content for authenticated users -->
                     <br>
-                    <a class="logout-text" href="/logout">logout</a>
+                    <a class="logout-text" href="{% url 'logout' %}?next=/">
+                        Logout
+                    </a>
                     </p>
             {% else %}
                 <!-- Display content for anonymous users -->
