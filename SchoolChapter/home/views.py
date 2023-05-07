@@ -26,7 +26,7 @@ def google_login(request):
         'client_id': settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
         'response_type': 'code',
         'scope': 'email profile',
-        'redirect_uri': request.build_absolute_uri('/')[:-1]+settings.SOCIAL_AUTH_LOGIN_REDIRECT_URL,
+        'redirect_uri': settings.SOCIAL_AUTH_LOGIN_REDIRECT_URL,
         'state': state,
     }
     url = 'https://accounts.google.com/o/oauth2/auth?' + urlparse.urlencode(params)
@@ -43,7 +43,7 @@ def google_callback(request):
         'code': code,
         'client_id': settings.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
         'client_secret': settings.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
-        'redirect_uri': request.build_absolute_uri('/')[:-1]+settings.SOCIAL_AUTH_LOGIN_REDIRECT_URL,
+        'redirect_uri': settings.SOCIAL_AUTH_LOGIN_REDIRECT_URL,
         'grant_type': 'authorization_code',
     }
     response = requests.post('https://accounts.google.com/o/oauth2/token', data=params)
