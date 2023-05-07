@@ -104,7 +104,6 @@ LOGIN_URL = '/auth/login/google-oauth2/'
 LOGOUT_URL = '/'
 LOGIN_REDIRECT_URL = 'https://ganitmantra.com/'
 
-
 SITE_ID = 3
 
 WSGI_APPLICATION = 'SchoolChapter.wsgi.application'
@@ -138,13 +137,12 @@ DATABASES = {
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '458704564038-nnoianq8i87ts2de3uiftmd3iusih21q.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = ['email']
-SOCIAL_AUTH_LOGIN_REDIRECT_URL=''
+SOCIAL_AUTH_LOGIN_REDIRECT_URL='/glogincallback'
 SOCIAL_AUTH__URL_NAMESPACE='social'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = True
+RAISE_EXCEPTIONS = True
 
 AUTHENTICATION_BACKENDS = (
-    'social_core.backends.open_id.OpenIdAuth',
-    'social_core.backends.google.GoogleOAuth2',
-    'social_core.backends.google.GoogleOAuth',
     'django.contrib.auth.backends.ModelBackend',
 )
 
