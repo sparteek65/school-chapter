@@ -99,5 +99,4 @@ const submit_fomcqs = () => {
     xhr.send(jsonData);
   }
 
-
 }
