@@ -40,3 +40,7 @@ const submit_mcq = () => {
   // send the request with the JSON data in the request body
   xhr.send(jsonData);
 };
+
+const submit_fomcqs=()=>{
+  console.log("submitting fomcqs")
+}

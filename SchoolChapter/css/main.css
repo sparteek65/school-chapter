@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa+One&family=Hind&display=swap');
+
 body {
   margin: 0px;
 }
@@ -6,7 +8,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #1182e5;
+  background-color: #9C88FF;
   padding: 20px;
 }
 
@@ -58,7 +60,6 @@ body {
 .main-body > .right {
   width: 500px;
   padding: 30px;
-  padding-top: 80px;
 }
 
 .other-topics {
@@ -67,17 +68,28 @@ body {
   height: 450px;
 }
 
+.topic-breadcrum{
+  color: #001CB1;
+  font-feature-settings: 'clig' off, 'liga' off;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 112.5% */
+}
+
 .topic-title {
+  font-family: 'Changa One', sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 25px;
+  line-height: 16px;
 }
 
 .tile-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  column-gap: 10px;
+  justify-content: space-evenly;
 }
 
 .tile {
@@ -154,6 +166,7 @@ body {
   font-weight: 400;
   font-size: 14px;
   line-height: 22px;
+  margin-top: 40px;
   /* or 157% */
 
   color: rgba(84, 89, 94, 0.6);
@@ -240,11 +253,11 @@ body {
 }
 
 .menu-container {
-  font-family: "Inter";
+  font-family: 'Hind', sans-serif;
   font-style: normal;
   font-weight: 600;
   width: 100%;
-  background-color: #1182e5;
+  background-color: #9C88FF;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -336,7 +349,7 @@ nav ul {
 
 .nav a {
   display: block;
-  background: #1182e5;
+  background: #9C88FF;
   color: #fff;
   text-decoration: none;
   padding: 0.8em 1.8em;
@@ -374,7 +387,7 @@ nav ul {
 }
 .nav li:hover > a {
   color: rgb(221, 221, 221);
-  background-color: #1576cb;
+  background-color: #8571eb;
 }
 .nav > li:first-child {
   border-radius: 4px 0 0 4px;
@@ -441,7 +454,7 @@ nav ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #1182e5;
+  background-color: #9C88FF;
   padding: 20px;
   color: #ffffff;
 }
@@ -455,4 +468,29 @@ nav ul {
   color: white;
   background-color: transparent;
   border: none;
+}
+
+.login-required{
+  padding: 10px;
+  background-color: #de3030e6;
+  font-family: 'Hind', sans-serif;
+  font-size: 15px;
+  color: white;
+}
+
+.submit-fomcq{
+  background-color: #4F4F4F;
+  color: white;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  font-size: 20px;
+}
+
+.submit-fomcq-submit{
+  font-size: 20px;
+  background-color: black;
+  border-style: none;
+  color: white;
+  padding: 18px;
 }

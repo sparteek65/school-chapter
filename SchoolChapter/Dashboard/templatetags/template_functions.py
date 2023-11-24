@@ -1,6 +1,10 @@
 from django import template
-from ..models import McqOption,Mcq,Class, Chapter,Topic
+from ..models import McqOption,Mcq,Class, Chapter,Topic,FOMcq,FOMcqUserResponse
 from typing import Tuple,Optional
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+
+
 register = template.Library()
 
 @register.filter()
@@ -46,3 +50,28 @@ def chapters_of_class(c):
 @register.filter()
 def topic_of_chapter(c):
     return Topic.objects.filter(chapter=c)
+
+@register.filter()
+def topic_tiles(topic_number):
+    topic_obj= get_object_or_404(Topic,number=topic_number)
+    
+    return {"fomcq":topic_obj.fomcq_set.count()>0,
+            "cheatsheet":topic_obj.cheatsheet_set.count()>0,
+            "casestudies":topic_obj.casestudies_set.count()>0,
+            "exampapers":topic_obj.exampapers_set.count()>0,
+            }
+    
+@register.filter()
+def fomcqs_for_topic_number(topic_number):
+    topic_obj= get_object_or_404(Topic,number=topic_number)
+    
+    return topic_obj.fomcq_set.all()
+
+@register.filter()
+def is_fomcq_submitted(fomcq:FOMcq,user:User)->Tuple[Optional[bool]]:
+    if user.is_anonymous:
+        return False
+    user_mcq_response = FOMcqUserResponse.objects.filter(user=user,
+                                                         fomcq=fomcq).last()
+    return user_mcq_response
+    

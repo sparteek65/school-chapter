@@ -1,2 +1,8 @@
 *.sqlite3
 *.pyc
+venv/
+../venv/
+*/migrations/*
+*.DS_Store
+*.sqlite3
+*.pyc

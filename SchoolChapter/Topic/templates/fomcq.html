@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% load template_functions %}
+
+<div class="left">
+    <div class="topic-breadcrum">{{topic.chapter.of_class.name}} - {{topic.chapter.name}} - {{topic.name}}</div>
+    <div class="topic-title">
+        <h1>{{topic.name}}</h1>
+
+    </div>
+    <div class="topic-container">
+        {% with mcqs=topic.number|fomcqs_for_topic_number %}
+        {% for m in mcqs %}
+        {% with user_mcq_response=m|is_fomcq_submitted:request.user %}
+
+        {% if user_mcq_response is False %}
+            <div class="login-required"> Please login to submit and see the answer</div>
+        {% endif %}
+            <div class="mcq" id="{{ m.mcq_id }}">
+                <div class="question">
+                    {{ m.question }}
+                </div>
+                <div class="description">
+                    {{ m.description.html|safe }}
+                </div>
+                    
+                    <input type="radio" id="{{ m.mcq_id }}__op1" name="{{ m.mcq_id }}" value="1" class="chk-option" {% if user_mcq_response is not None %} disabled {% endif %}>
+                    <label for="option1" style="{% if m.answer is 1 %} {% if user_mcq_response is not None %} background-color: greenyellow; {% endif %}   {% endif %}">{{ m.option1 }}</label>
+                    <br>
+                    <input type="radio" id="{{ m.mcq_id }}__op2" name="{{ m.mcq_id }}" value="2" class="chk-option" {% if user_mcq_response is not None %} disabled {% endif %}>
+                    <label for="option2" style="{% if m.answer is 2 %} {% if user_mcq_response is not None %} background-color: greenyellow; {% endif %}   {% endif %}">{{ m.option2 }}</label>
+                    <br>
+                    <input type="radio" id="{{ m.mcq_id }}__op3" name="{{ m.mcq_id }}" value="3" class="chk-option" {% if user_mcq_response is not None %} disabled {% endif %}>
+                    <label for="option3" style="{% if m.answer is 3 %} {% if user_mcq_response is not None %} background-color: greenyellow; {% endif %}   {% endif %}">{{ m.option3 }}</label>
+                    <br>
+                    <input type="radio" id="{{ m.mcq_id }}__op4" name="{{ m.mcq_id }}" value="4" class="chk-option" {% if user_mcq_response is not None %} disabled {% endif %}>
+                    <label for="option4" style="{% if m.answer is 4 %} {% if user_mcq_response is not None %} background-color: greenyellow; {% endif %}   {% endif %}">{{ m.option4 }}</label>
+                
+                
+                {% if user_mcq_response is not False %}
+                    {% if user_mcq_response is not None %}
+                        <div class="answer">
+                            Answer :  {{ m.answer }}
+                            <br>
+                            You choosed : {{ user_mcq_response.fomcq_answer }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+        {% endwith %}
+        {% endfor %}
+        {% endwith %}
+
+    </div>
+</div>
+
+<div class="right">
+    <div class="tile-container">
+
+        {% with tiles=topic.number|topic_tiles %}
+
+        <!-- deleting mcq title cause this is mcq screen -->
+
+        {% if tiles.cheatsheet %}
+        <div class="tile">
+            <a href="/topic/mcq?topic_number={{ topic.number }}" class="herf">Cheat Sheet</a>
+        </div>
+        {% endif %}
+
+        {% if tiles.casestudies %}
+        <div class="tile">
+            <a href="/topic/mcq?topic_number={{ topic.number }}" class="herf">Case Studies</a>
+        </div>
+        {% endif %}
+
+        {% if tiles.exampapers %}
+        <div class="tile">
+            <a href="/topic/mcq?topic_number={{ topic.number }}" class="herf">Exam Papers</a>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+
+    </div>
+</div>
+
+</div>
+
+<div class="submit-fomcq">
+    {% if user.is_authenticated %}
+    <button class="submit-fomcq-submit" onclick="submit_fomcqs()"> submit </button> 
+    {% endif %}
+</div>
+
+
+
+{% endblock %}

@@ -3,21 +3,54 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
+{% load template_functions %}
+
 <div class="left">
+    <div class="topic-breadcrum">{{topic.chapter.of_class.name}} - {{topic.chapter.name}} - {{topic.name}}</div>
     <div class="topic-title">
         <h1>{{topic.name}}</h1>
-        <div class="tile-container">
-            {% if mcq %}
-            <div class="tile">
-                <a href="/topic/mcq?topic_number={{ topic.number }}" class="herf">Mcq</a>
-            </div>
-            {% endif %}
-            
-        </div>
+
     </div>
     <div class="topic-container">
         {{topic.content.html|safe}}
     </div>
 </div>
+
+<div class="right">
+    <div class="tile-container">
+
+        {% with tiles=topic.number|topic_tiles %}
+
+        {% if tiles.fomcq %}
+        <div class="tile">
+            <a href="/topic/mcq/?topic_number={{ topic.number }}" class="herf">Mcq</a>
+        </div>
+        {% endif %}
+
+        {% if tiles.cheatsheet %}
+        <div class="tile">
+            <a href="/topic/mcq/?topic_number={{ topic.number }}" class="herf">Cheat Sheet</a>
+        </div>
+        {% endif %}
+
+        {% if tiles.casestudies %}
+        <div class="tile">
+            <a href="/topic/mcq/?topic_number={{ topic.number }}" class="herf">Case Studies</a>
+        </div>
+        {% endif %}
+
+        {% if tiles.exampapers %}
+        <div class="tile">
+            <a href="/topic/mcq/?topic_number={{ topic.number }}" class="herf">Exam Papers</a>
+        </div>
+        {% endif %}
+        {% endwith %}
+
+
+    </div>
+</div>
+</div>
+
+
 
 {% endblock %}

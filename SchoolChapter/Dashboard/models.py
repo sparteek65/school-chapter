@@ -90,8 +90,34 @@ class CaseStudies(models.Model):
 
 class CheatSheet(models.Model):
     file = models.FileField(upload_to='cheat_sheet/', max_length=10485760,
-                                validators=[FileExtensionValidator(allowed_extensions=['pdf','doc','docx','txt'])])
+                                validators=[FileExtensionValidator(allowed_extensions=['pdf','doc','docx','txt','png'])])
     name=models.CharField(max_length=256)
     of_class=models.ForeignKey(Class,on_delete=models.CASCADE,related_name='cheat_sheet_class')
     chapter=models.ForeignKey(Chapter,on_delete=models.CASCADE,null=True,blank=True)
     topic=models.ForeignKey(Topic,on_delete=models.CASCADE,null=True,blank=True)
+
+
+class FOMcq(models.Model):
+    mcq_id = models.AutoField(primary_key=True,auto_created=True)
+    image = models.FileField(upload_to='cheat_sheet/', max_length=10485760,blank=True,null=True,
+                                validators=[FileExtensionValidator(allowed_extensions=['png','jpeg'])])
+    question=models.CharField(max_length=6000)
+    description = QuillField(default="")
+    option1=models.CharField(max_length=6000)
+    option2=models.CharField(max_length=6000)
+    option3=models.CharField(max_length=6000)
+    option4=models.CharField(max_length=6000)
+    topic=models.ForeignKey(Topic,on_delete=models.CASCADE,null=True,blank=True)
+    answer=models.IntegerField()
+
+    def __str__(self) -> str:
+        return self.question
+
+class FOMcqUserResponse(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,blank=True,null=True)
+    topic=models.ForeignKey(Topic,on_delete=models.CASCADE,null=True,blank=True)
+    fomcq=models.ForeignKey(FOMcq,on_delete=models.CASCADE,null=True,blank=True)
+    cheatsheet=models.ForeignKey(CheatSheet,on_delete=models.CASCADE,null=True,blank=True)
+    casestudies=models.ForeignKey(CaseStudies,on_delete=models.CASCADE,null=True,blank=True)
+    exampapers=models.ForeignKey(ExamPapers,on_delete=models.CASCADE,null=True,blank=True)
+    fomcq_answer=models.IntegerField(blank=True,null=True)
