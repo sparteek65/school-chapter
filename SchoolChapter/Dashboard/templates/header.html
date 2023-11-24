@@ -2,7 +2,12 @@
 
 <div class="header">
     <img src="{% static 'images/logo.svg' %}" alt="" class="src">
-    <input type="text" class="header-search-input" placeholder="Search Any Topic..." />
+
+        <div class="search-container">
+            <input type="text" class="header-search-input" id="header-search-input" placeholder="Search Any Topic..." onchange="fetchAndGenerateSearchResults()"/>
+            <div class="search-results">
+            </div>
+        </div>
     <div class="header-button-container">
         <div class="profile-button">
             {% if user.is_authenticated %}

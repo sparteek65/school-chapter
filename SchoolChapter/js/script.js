@@ -100,3 +100,20 @@ const submit_fomcqs = () => {
   }
 
 }
+
+
+async function fetchAndGenerateSearchResults() {
+  const inputText = document.getElementById('header-search-input').value;
+  const apiResponse = await fetch('/topic/search/?q='+inputText);
+  const apiData = await apiResponse.json();
+  const mainResultsContainer = document.getElementsByClassName("search-results")[0];
+
+  const searchResultsContainer = document.createElement('div');
+  searchResultsContainer.className = 'search-results';
+  var result=""
+  for (const item of apiData) {
+    result+=item
+  }
+
+  mainResultsContainer.innerHTML=result;   
+}
