@@ -45,7 +45,9 @@ body {
   padding: 30px;
   padding-inline: 100px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .main-body > .left {
@@ -90,6 +92,7 @@ body {
 .tile-container {
   display: flex;
   justify-content: space-evenly;
+  column-gap: 10px;
 }
 
 .tile {
@@ -497,4 +500,15 @@ nav ul {
   border-style: none;
   color: white;
   padding: 18px;
+}
+
+
+@media only screen and (max-width: 950px) {
+  body {
+    .main-body {
+      row-gap: 100px;
+      padding: 10px;
+    padding-inline: -10px;
+  }
+  }
 }
