@@ -29,11 +29,16 @@ def mcq(request):
 def search_everything(request):
     search_query = request.GET.get("q")
     if not search_query:
-        return JsonResponse(data={[]})
+        return JsonResponse(data=[],safe=False)
     else:
-        search_results= Topic.objects.filter(Q(name__in=search_query)|Q(number=search_query)|Q(description__in=search_query))
-        print(search_results)
-        return JsonResponse(search_results)
+        html_search_response_str=""
+        search_results= Topic.objects.filter(Q(name__icontains=search_query)|Q(description__icontains=search_query)|Q(content__icontains=search_query))
+        html_search_response = [f'<div class="result-item"><a  href="/topic/?n={result.number}">{result.name}</a></div>' for result in search_results]
+        
+        for result in html_search_response:
+            html_search_response_str += result
+        
+        return JsonResponse([html_search_response_str],safe=False)
 
 def mcq_submittion(request):
     if request.method=="POST":
