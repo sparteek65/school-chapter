@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.urls import path,re_path
 from .views import topic,search_everything,mcq, mcq_submittion,fomcq_submittion
+from .experiments import redirect_to_url
 
 urlpatterns = [
     path('', topic),
@@ -23,4 +24,5 @@ urlpatterns = [
     path('mcq/', mcq),
     path('mcq-submittion/', mcq_submittion),
     path('fomcq-submittion/', fomcq_submittion),
+    path('exp/', redirect_to_url),
 ]
