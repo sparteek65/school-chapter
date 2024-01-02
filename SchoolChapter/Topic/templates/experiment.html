@@ -1,9 +1,36 @@
-<html>
-    <head>
-       <meta charset="utf-8">
-    </head>
-    <body >
-       <h1>My Deep Link Test page</h1>
-       <p><a href="{{ deeplink }}">Launch</a></p>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Button</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+
+    #launchLink {
+      display: block;
+      width: 100%;
+      max-width: 300px; /* Set a maximum width if needed */
+      padding: 15px;
+      background-color: #4caf50; /* Green color */
+      color: #fff; /* White text color */
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <a href="{{ deeplink }}" id="launchLink">Launch</a>
+</body>
 </html>
